@@ -1,0 +1,39 @@
+* {
+  /* border: 1px solid red; */
+}
+
+body {
+  /* overflow: hidden; */
+}
+
+/* For modern browsers */
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #957fef;  /* use your theme color */
+  border-radius: 1px;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #957fef transparent;
+}
+
+
+@import "tailwindcss";
+
+
+/*
+  Add your custom global styles below this import.
+  However, remember that Tailwind's utility-first approach generally discourages
+  extensive custom CSS outside of its system.
+*/
+
