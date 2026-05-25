@@ -5,6 +5,7 @@
 // 3rd-party modules
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // User define modules
 import { reqLogger } from "./utils/logger.js";
@@ -25,6 +26,7 @@ try {
 // Global middlewares
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 app.use(reqLogger);
 
 //-----------------------------------------------------------------------------------

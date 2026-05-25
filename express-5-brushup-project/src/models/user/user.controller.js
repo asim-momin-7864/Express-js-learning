@@ -2,9 +2,11 @@
 
 // 3rd party modules
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 // custom module
 import User from "./user.model.js";
+import { generateToken } from "../../utils/generateToken.js";
 
 // signup controller
 export const signupController = async (req, res, next) => {
@@ -45,6 +47,21 @@ export const signupController = async (req, res, next) => {
     });
 
     console.log(result);
+
+    // user is authentc -- so generate token for it
+    const token = generateToken(result._id);
+    console.log(token);
+    
+
+    //TODO token pass through cookies
+    // Send the cookie securely
+    res.cookie("jwt_token", token, {
+      httpOnly: true, // Immune to JavaScript theft (XSS protection)
+      secure: process.env.NODE_ENV === "production", // false on localhost
+      sameSite: "strict", // CSRF Protection
+      maxAge: 60 * 60 * 1000, // Expires in 1 hour
+    });
+
     res.status(201).json({ id: result._id });
   } catch (err) {
     err.statusCode = 500;
@@ -61,6 +78,8 @@ export const loginController = async (req, res, next) => {
   //[4] verfiy entered password and our password is correct or not ? - is actule owner/user
 
   //* [5] after login or signup we use JWT as give token this user is valid can us our app/apis - * not in for login and signup/ authentication
+  //? [6] how tp protect all routes?
+  // protectRoutes like middleware , check every request have token and is it valid (jwt.verify)  then pass reqtest to that api
 
   const { email, password } = req.body;
 
@@ -86,6 +105,18 @@ export const loginController = async (req, res, next) => {
     next(error);
     return;
   }
+
+  // user is authentic - so generate token for it
+  const token = generateToken(user._id);
+
+  //TODO token pass through cookies
+  // Send the cookie securely
+  res.cookie("jwt_token", token, {
+    httpOnly: true, // Immune to JavaScript theft (XSS protection)
+    secure: process.env.NODE_ENV === "production", // false on localhost
+    sameSite: "strict", // CSRF Protection
+    maxAge: 60 * 60 * 1000, // Expires in 1 hour
+  });
 
   res.status(200).json({ message: `${user.username} User loggedin!!` });
 };
