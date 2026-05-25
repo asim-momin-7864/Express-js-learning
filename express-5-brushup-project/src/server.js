@@ -4,19 +4,48 @@
 
 // 3rd-party modules
 import express from "express";
+import cors from "cors";
 
-// Global middlewares
-app.use(express.json());
-
+// User define modules
+import { reqLogger } from "./utils/logger.js";
+import { connectionDB } from "./config/db.config.js";
+import userRouter from "./models/user/user.route.js";
 
 // initialization
 const app = express();
 
-// routes
+// DB Connection
+try {
+  connectionDB();
+} catch (error) {
+  console.error(error);
+  process.exit(1); // stop server code
+}
 
-//home, static files
+// Global middlewares
+app.use(cors());
+app.use(express.json());
+app.use(reqLogger);
+
+//-----------------------------------------------------------------------------------
+//* routes
+
+// home, static files
 app.get("/", (req, res) => {
+  // console.log(req);
   res.status(200).send({ message: "Welcome! to home route." });
+});
+
+// user
+app.use("/api/user", userRouter); // register routes
+
+
+//---------------------------------------------------------------------------
+//* Central Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  res.status(err.statusCode).json(err.message);
 });
 
 // port
