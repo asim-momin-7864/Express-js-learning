@@ -1,0 +1,6 @@
+{
+  "legacyWatch": true,
+  "events": {
+    "restart": "clear"
+  }
+}
