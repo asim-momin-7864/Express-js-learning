@@ -11,6 +11,7 @@ import cookieParser from "cookie-parser";
 import { reqLogger } from "./utils/logger.js";
 import { connectionDB } from "./config/db.config.js";
 import userRouter from "./models/user/user.route.js";
+import subRouter from "./models/subscription/subscription.route.js";
 
 // initialization
 const app = express();
@@ -30,6 +31,7 @@ app.use(cookieParser());
 app.use(reqLogger);
 
 //-----------------------------------------------------------------------------------
+
 //* routes
 
 // home, static files
@@ -40,6 +42,10 @@ app.get("/", (req, res) => {
 
 // user
 app.use("/api/user", userRouter); // register routes
+
+// subscription
+app.use("/api/subscription", subRouter);
+
 
 
 //---------------------------------------------------------------------------
