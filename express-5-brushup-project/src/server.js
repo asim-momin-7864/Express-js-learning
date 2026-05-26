@@ -6,6 +6,7 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import helmet from "helmet";
 
 // User define modules
 import { reqLogger } from "./utils/logger.js";
@@ -29,6 +30,7 @@ app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 app.use(reqLogger);
+app.use(helmet());
 
 //-----------------------------------------------------------------------------------
 

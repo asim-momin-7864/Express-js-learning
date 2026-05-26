@@ -1,4 +1,4 @@
-//* user controllers
+//* User controllers
 
 // 3rd party modules
 import bcrypt from "bcryptjs";
@@ -23,6 +23,7 @@ export const signupController = async (req, res, next) => {
   }
 
   //TODO check if user exists or not -> return login
+
 
   /*
   * NEW solution comes with in express 5

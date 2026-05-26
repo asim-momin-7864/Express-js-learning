@@ -1,4 +1,4 @@
-//* user schema
+//* User schema
 
 // 3rd party moules
 import mongoose from "mongoose";

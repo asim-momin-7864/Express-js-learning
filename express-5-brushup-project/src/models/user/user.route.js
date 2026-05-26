@@ -1,4 +1,4 @@
-//* user router
+//* User router
 
 // 3rd party modules
 import express from "express";

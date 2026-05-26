@@ -1,4 +1,4 @@
-// Subscription model, schema
+//* Subscription model, schema
 
 // 3rd party modules
 import mongoose from "mongoose";
