@@ -46,14 +46,13 @@ export const signupController = async (req, res, next) => {
       password: hash,
     });
 
-    console.log(result);
+    // console.log("result: ", result);
 
     // user is authentc -- so generate token for it
     const token = generateToken(result._id);
-    console.log(token);
-    
+    // console.log(token);
 
-    //TODO token pass through cookies
+    //token pass through cookies
     // Send the cookie securely
     res.cookie("jwt_token", token, {
       httpOnly: true, // Immune to JavaScript theft (XSS protection)
@@ -62,7 +61,15 @@ export const signupController = async (req, res, next) => {
       maxAge: 60 * 60 * 1000, // Expires in 1 hour
     });
 
-    res.status(201).json({ id: result._id });
+    //Send user object with res
+    res.user = {
+      id: result._id,
+      username: result.username,
+      email: result.email,
+    };
+
+    // response
+    res.status(201).json({ message: `${result._id} ID user Signedup!` });
   } catch (err) {
     err.statusCode = 500;
     next(err);
@@ -88,6 +95,9 @@ export const loginController = async (req, res, next) => {
   // find
   const user = await User.findOne({ email });
 
+  console.log(user);
+  
+
   // not exists
   if (!user) {
     const error = new Error("Invalid Credentials!");
@@ -109,7 +119,7 @@ export const loginController = async (req, res, next) => {
   // user is authentic - so generate token for it
   const token = generateToken(user._id);
 
-  //TODO token pass through cookies
+  //token pass through cookies
   // Send the cookie securely
   res.cookie("jwt_token", token, {
     httpOnly: true, // Immune to JavaScript theft (XSS protection)
@@ -118,5 +128,12 @@ export const loginController = async (req, res, next) => {
     maxAge: 60 * 60 * 1000, // Expires in 1 hour
   });
 
-  res.status(200).json({ message: `${user.username} User loggedin!!` });
+  // send user object with res
+  res.user = {
+   id: user._id,
+   username: user.username,
+   email: user.email,
+  }
+
+  res.status(200).json({ message: `${user._id} ID User loggedin!!` });
 };

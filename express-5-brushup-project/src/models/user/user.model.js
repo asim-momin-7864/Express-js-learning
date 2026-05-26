@@ -1,5 +1,6 @@
 //* user schema
 
+// 3rd party moules
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
