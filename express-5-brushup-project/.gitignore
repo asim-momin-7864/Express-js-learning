@@ -15,4 +15,4 @@ node_modules/
 # Ignore all files in cache directories
 **/cache/*
 
-*.env
+.env
