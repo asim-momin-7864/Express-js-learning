@@ -4,15 +4,22 @@
 import express from "express";
 
 // user defined module
-import { getAllSubsController, newSubController } from "./subscription.controller.js";
+import {
+  getAllSubsController,
+  newSubController,
+  updateSubController,
+} from "./subscription.controller.js";
 import { protectRoute } from "../../middlewares/protectRoute.middleware.js";
 
 const router = express.Router();
 
 // GET: all my subscriptions
-router.get("/mysubscriptions", protectRoute ,getAllSubsController )
+router.get("/mysubscriptions", protectRoute, getAllSubsController);
 
 // POST: create new subscription
-router.post("/new", protectRoute ,newSubController)
+router.post("/new", protectRoute, newSubController);
+
+// PATCH: update subscription
+router.patch("/update/:id", protectRoute, updateSubController);
 
 export default router;

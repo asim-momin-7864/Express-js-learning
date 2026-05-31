@@ -1,6 +1,7 @@
 //* Subscriptions controllers
 
 // user defined controller
+import mongoose from "mongoose";
 import User from "../user/user.model.js";
 import Subscription from "./subscription.model.js";
 
@@ -85,7 +86,63 @@ export const newSubController = async (req, res, next) => {
       },
     });
   } catch (error) {
-     error.statusCode = 500;
+    error.statusCode = 500;
+    next(error);
+  }
+};
+
+// update sunscription controller
+export const updateSubController = async (req, res, next) => {
+  try {
+    // id from params
+    const subID = req.params.id;
+    const user = req.user;
+
+    // updated data from body
+    const { name, price, currency, billingCycle, category, isActive } =
+      req.body;
+
+    //TODO input verification by zod
+
+    // new update object
+    const newUpdatedData = {
+      name,
+      price,
+      currency,
+      billingCycle,
+      category,
+      isActive,
+    };
+
+    const updatedSub = await Subscription.findOneAndUpdate(
+      { _id: subID, user: user._id },
+      newUpdatedData,
+      {
+        new: true, // Returns the newly updated document (instead of the old one)
+        runValidators: true,// Forces Mongoose to re-run your Schema enum/required checks!
+      },
+    );
+
+    // verification
+    if (!updatedSub) {
+      let error = new Error(
+        `Subscription not found or you do not have permission.`,
+      );
+      error.statusCode = 404;
+      next(error);
+      return;
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        subscription: updatedSub,
+      },
+    });
+
+    // send to DB
+  } catch (error) {
+    error.statusCode = 500;
     next(error);
   }
 };
