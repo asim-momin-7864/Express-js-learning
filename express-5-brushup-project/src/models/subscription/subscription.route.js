@@ -8,6 +8,7 @@ import {
   getAllSubsController,
   newSubController,
   updateSubController,
+  deleteSubController
 } from "./subscription.controller.js";
 import { protectRoute } from "../../middlewares/protectRoute.middleware.js";
 
@@ -21,5 +22,8 @@ router.post("/new", protectRoute, newSubController);
 
 // PATCH: update subscription
 router.patch("/update/:id", protectRoute, updateSubController);
+
+// DELETE: delete subscription
+router.delete("/delete/:id", protectRoute, deleteSubController);
 
 export default router;

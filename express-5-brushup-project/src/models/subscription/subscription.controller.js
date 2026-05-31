@@ -119,7 +119,7 @@ export const updateSubController = async (req, res, next) => {
       newUpdatedData,
       {
         new: true, // Returns the newly updated document (instead of the old one)
-        runValidators: true,// Forces Mongoose to re-run your Schema enum/required checks!
+        runValidators: true, // Forces Mongoose to re-run your Schema enum/required checks!
       },
     );
 
@@ -141,6 +141,42 @@ export const updateSubController = async (req, res, next) => {
     });
 
     // send to DB
+  } catch (error) {
+    error.statusCode = 500;
+    next(error);
+  }
+};
+
+// delete sub
+export const deleteSubController = async (req, res, next) => {
+  try {
+    // id form params
+    const subID = req.params.id;
+    // authenticated user data
+    const user = req.user;
+
+    // query send
+    const result = await Subscription.findOneAndDelete({
+      _id: subID,
+      user: user._id,
+    });
+
+    // output verification
+    if (result.deletedCount === 0) {
+      const error = new Error(
+        `Subscription is not found or you dont have permission`,
+      );
+      error.statusCode = 404;
+      next(error);
+      return;
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        message: "Subsciption Deleted!",
+      },
+    });
   } catch (error) {
     error.statusCode = 500;
     next(error);
