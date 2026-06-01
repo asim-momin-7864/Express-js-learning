@@ -44,7 +44,7 @@ const logger1 = pino({
   },
 });
 
-// logger1.catastrophe("Disaster all servers crashed");
+logger1.catastrophe("Disaster all servers crashed");
 // // => [09:02:40.446] USERLVL (5168): Disaster all servers crashed
 
 // logger1.info("A user login");
@@ -165,11 +165,11 @@ const multipleTransports = pino.transport({
   targets: [
     {
       target: "pino-pretty",
-      options: { destination: "./logs/output.log", mkdir: true },
+      options: { destination: "./logs/output.log", mkdir: true, colorize: false },
     },
     {
       target: "pino-pretty",
-      options: { destination: process.stdout.fd }, // log logs into terminal
+      options: { destination: process.stdout.fd, colorize: true }, // log logs into terminal
     },
   ],
 });
@@ -183,20 +183,21 @@ const logger2 = pino(
       paths: ["email", "password", "address"],
       remove: true,
     },
+    
   },
   multipleTransports,
 ); // multiple destinations
 
-// // generating logs
-// logger2.info("Hello from pino");
-// logger2.error("A critical error");
-// logger2.fatal("Server shut down");
-// try {
-//   let result = divide(5, 0);
-//   logger2.info(`Operation successful! Result: ${result}`);
-// } catch (error) {
-//   logger2.error(error, `Error occured during division`);
-// }
+// generating logs
+logger2.info("Hello from pino");
+logger2.error("A critical error");
+logger2.fatal("Server shut down");
+try {
+  let result = divide(5, 0);
+  logger2.info(`Operation successful! Result: ${result}`);
+} catch (error) {
+  logger2.error(error, `Error occured during division`);
+}
 
 //---------------------------------------------------------------------------------------------
 
@@ -219,7 +220,11 @@ const employee = {
 };
 
 // generating logs
-logger2.info(employee, "Hello from pino");
+logger2.info(employee, "Login employee detailes");
+logger2.info(employee, "Login employee detailes");
+logger2.info(employee, "Login employee detailes");
+
+
 
 /*
 
