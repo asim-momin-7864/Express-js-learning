@@ -1,0 +1,77 @@
+{"level":30,"time":1780310358966,"pid":16058,"hostname":"blue-dragon","msg":"Hello from pino"}
+{"level":50,"time":1780310358966,"pid":16058,"hostname":"blue-dragon","msg":"A critical error"}
+{"level":60,"time":1780310358966,"pid":16058,"hostname":"blue-dragon","msg":"Server shut down"}
+{"level":50,"time":1780310359316,"pid":16058,"hostname":"blue-dragon","err":{"type":"Error","message":"cannot divide by 0","stack":"Error: cannot divide by 0\n    at divide (file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:119:11)\n    at file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:169:16\n    at ModuleJob.run (node:internal/modules/esm/module_job:437:25)\n    at async node:internal/modules/esm/loader:639:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"},"msg":"Error occured during division"}
+
+[10:41:57.587] INFO (16730): Hello from pino
+[10:41:57.588] ERROR (16730): A critical error
+[10:41:57.588] FATAL (16730): Server shut down
+[10:41:57.878] ERROR (16730): Error occured during division
+    err: {
+      "type": "Error",
+      "message": "cannot divide by 0",
+      "stack":
+          Error: cannot divide by 0
+              at divide (file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:119:11)
+              at file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:168:16
+              at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+              at async node:internal/modules/esm/loader:639:26
+              at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+    }
+[10:47:37.620] INFO (17798): Hello from pino
+[10:47:37.620] ERROR (17798): A critical error
+[10:47:37.620] FATAL (17798): Server shut down
+[10:47:38.234] ERROR (17798): Error occured during division
+    err: {
+      "type": "Error",
+      "message": "cannot divide by 0",
+      "stack":
+          Error: cannot divide by 0
+              at divide (file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:119:11)
+              at file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:184:16
+              at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+              at async node:internal/modules/esm/loader:639:26
+              at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+    }
+[10:50:41.057] INFO (18515): Hello from pino
+[10:50:41.057] ERROR (18515): A critical error
+[10:50:41.057] FATAL (18515): Server shut down
+[10:50:41.709] ERROR (18515): Error occured during division
+    err: {
+      "type": "Error",
+      "message": "cannot divide by 0",
+      "stack":
+          Error: cannot divide by 0
+              at divide (file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:119:11)
+              at file:///mnt/e/Express-js-learning/pino-js-tutorial/1-pino-basics.js:186:16
+              at ModuleJob.run (node:internal/modules/esm/module_job:437:25)
+              at async node:internal/modules/esm/loader:639:26
+              at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+    }
+[11:03:09.954] INFO (John Dev/20828): Hello from pino
+    id: "2314127egdhq"
+    age: 35
+    email: "[Redacted]"
+    password: "[Redacted]"
+    address: "[Redacted]"
+[11:03:20.707] INFO (John Dev/20915): Hello from pino
+    id: "2314127egdhq"
+    age: 35
+    email: "[Redacted]"
+    password: "[Redacted]"
+    address: "[Redacted]"
+[11:04:33.879] INFO (John Dev/21190): Hello from pino
+    id: "2314127egdhq"
+    age: 35
+    email: "[Redacted]"
+    password: "[Redacted]"
+    address: "[Redacted]"
+[11:04:45.247] INFO (John Dev/21288): Hello from pino
+    id: "2314127egdhq"
+    age: 35
+    email: "[Redacted]"
+    password: "[Redacted]"
+    address: "[Redacted]"
+[11:10:00.504] INFO (John Dev/22379): Hello from pino
+    id: "2314127egdhq"
+    age: 35
