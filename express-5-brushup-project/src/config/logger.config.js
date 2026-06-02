@@ -5,23 +5,27 @@ import pino, { destination, levels } from "pino";
 import path from "path";
 
 // log file path
-const logFilePath = path.join( import.meta.dirname, "..", "..", "logs", "output.log");
+const logFilePath = path.join(
+  import.meta.dirname,
+  "..",
+  "..",
+  "logs",
+  "output.log",
+);
 
-// Add this line temporarily!
-console.log("🔥 DEBUG PATH:", logFilePath);
 
 // transport
 const transports = pino.transport({
   targets: [
-    // {
-    //   target: "pino-pretty",
-    //   options: {
-    //     // destination: "../../logs/output.log",
-    //     destination: logFilePath,
-    //     mkdir: false,
-    //     colorize: true,
-    //   },
-    // },
+    {
+      target: "pino/file",
+      options: {
+        // destination: "../../logs/output.log",
+        destination: logFilePath,
+        mkdir: false,
+        colorize: true,
+      },
+    },
     {
       target: "pino-pretty",
       options: {

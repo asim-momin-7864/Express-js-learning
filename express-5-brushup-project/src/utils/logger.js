@@ -1,6 +1,19 @@
 //* Middleware for generating logs
 
+//3rd party module
+import { getLogger } from "pino-correlation-id";
+
 export const reqLogger = (req, res, next) => {
-  console.log(req.method, req.url, new Date().toLocaleString());
-  next()
+  const logger = getLogger();
+
+  logger.info(
+    {
+      method: req.method,
+      url: req.originalUrl || req.url,
+      ip: req.ip,
+    },
+    "Incoming Http Request",
+  );
+
+  next();
 };
