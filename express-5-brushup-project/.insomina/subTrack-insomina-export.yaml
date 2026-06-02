@@ -1,0 +1,280 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: SubTrack API
+meta:
+  id: wrk_9f9d4cb675d94d93adf35bec084df56d
+  created: 1779179901625
+  modified: 1780390150562
+  description: ""
+collection:
+  - url: "{{ _.base_url }}"
+    name: Home Route
+    meta:
+      id: req_96293e6c534d4830844e5b853210cb5b
+      created: 1779179901636
+      modified: 1780391808907
+      isPrivate: false
+      description: ""
+      sortKey: -1780390207357
+    method: GET
+    body:
+      mimeType: application/json
+      text: |-
+        {
+        	"name": "buy coffee",
+        	"amount": 400
+        }
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: insomnia/12.5.0
+        description: ""
+        disabled: false
+    settings:
+      renderRequestBody: true
+      encodeUrl: true
+      followRedirects: global
+      cookies:
+        send: true
+        store: true
+      rebuildPath: true
+  - name: Auth
+    meta:
+      id: fld_56c44ac9ff90470281010ff1f1ca79ba
+      created: 1780390133290
+      modified: 1780391508356
+      sortKey: -1780390207257
+      description: ""
+    children:
+      - url: "{{ _.base_url }}/api/user/signup"
+        name: Signup
+        meta:
+          id: req_0a2777142b344542b8fc92173a735084
+          created: 1779703154468
+          modified: 1780391918384
+          isPrivate: false
+          description: ""
+          sortKey: -1780390181472
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username": "tester2",
+            	"email": "test2@gmail.com",
+            	"password": "test2"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/user/login"
+        name: Login
+        meta:
+          id: req_b2a5e583605f4e399bf8ac2d94c92d6b
+          created: 1779712654566
+          modified: 1780391826458
+          isPrivate: false
+          description: ""
+          sortKey: -1780390181372
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"email": "test1@gmail.com",
+            	"password": "test1"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.6.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Subscriptions
+    meta:
+      id: fld_b30398f3e5a44d90bb87202820654698
+      created: 1780390207157
+      modified: 1780390207157
+      sortKey: -1780390207157
+      description: ""
+    children:
+      - url: "{{ _.base_url }}/api/subscription/mysubscriptions"
+        name: My Subscriptions
+        meta:
+          id: req_acaefc6889fe4a47b441ab5e6905aba9
+          created: 1779805110395
+          modified: 1780392197221
+          isPrivate: false
+          description: ""
+          sortKey: -1780390212495
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/subscription/new"
+        name: Create Subscription
+        meta:
+          id: req_0151c41ea0ca4b08b34ddeb3929675cf
+          created: 1779813324242
+          modified: 1780391772432
+          isPrivate: false
+          description: ""
+          sortKey: -1780390212445
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "name": "GitHub Copilot",
+                "price": 10.00,
+                "currency": "USD",
+                "billingCycle": "monthly",
+                "category": "software"
+              }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/subscription/update/6a15d163d755d883a47af431"
+        name: Update Subscription
+        meta:
+          id: req_d1cdc3899ae3476f83adcd3ec87363c7
+          created: 1780243692907
+          modified: 1780391853747
+          isPrivate: false
+          description: ""
+          sortKey: -1780390212395
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            				"name": "Netflix Premium Ultra",
+            				"price": 24.99,
+            				"currency": "USD",
+            				"billingCycle": "monthly",
+            				"category": "entertainment",
+            				"isActive": false
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.base_url }}/api/subscription/delete/6a15d163d755d883a47af331"
+        name: Delete Subscription
+        meta:
+          id: req_83eff899f256488eb2d90bb2b17d7dbd
+          created: 1780245379896
+          modified: 1780391865616
+          isPrivate: false
+          description: ""
+          sortKey: -1780390212295
+        method: DELETE
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.5.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_b59dfb76efb29458276da490b6faca009d36f53a
+    created: 1779179901629
+    modified: 1780245687714
+  cookies:
+    - id: 046a4a0f-2934-4fc3-843b-4f4d39082ba1
+      key: foo
+      value: bar
+      domain: domain.com
+      path: /
+      secure: false
+      httpOnly: false
+    - id: 82f3f2d5-676d-4989-a53c-f4c5e6adfdd3
+      key: jwt_token
+      value: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMTQ0MmE3MzJmMGIxOGJlODk5ZGY5NCIsImlhdCI6MTc4MDI0NTY4NywiZXhwIjoxNzgwMjQ5Mjg3fQ.DrYCDANaqewHarRLPYWdl-ybeWKAwSOU-DEExleXOBM
+      domain: localhost
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: true
+environments:
+  name: Base Environment
+  meta:
+    id: env_b59dfb76efb29458276da490b6faca009d36f53a
+    created: 1779179901627
+    modified: 1780391680355
+    isPrivate: false
+  data:
+    base_url: '"http://localhost:4000"'
