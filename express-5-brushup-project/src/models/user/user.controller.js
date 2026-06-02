@@ -3,6 +3,7 @@
 // 3rd party modules
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import { getLogger } from "pino-correlation-id";
 
 // custom module
 import User from "./user.model.js";
@@ -10,20 +11,29 @@ import { generateToken } from "../../utils/generateToken.js";
 
 // signup controller
 export const signupController = async (req, res, next) => {
+  const logger = getLogger();
+
   // user details
   const { username, email, password } = req.body;
 
+  //log
+  logger.info({ email, username }, "User registration process initiated");
+
   //TODO request validation - zod / manually
   // manually
+
   if (!username || !email || !password) {
     let err = new Error("All fields are required!");
     err.statusCode = 400;
+
+    //log
+    logger.warn({ email }, "Invalid credentials");
+
     next(err); // passing error to error handler
     return;
   }
 
   //TODO check if user exists or not -> return login
-
 
   /*
   * NEW solution comes with in express 5
@@ -63,14 +73,20 @@ export const signupController = async (req, res, next) => {
     });
 
     //Send user object with res
-    res.user = {
+    req.user = {
       id: result._id,
       username: result.username,
       email: result.email,
     };
 
+    //log
+    logger.info({ email: result.email }, "User account successfully created");
+
     // response
-    res.status(201).json({ message: `${result._id} ID user Signedup!` });
+    res.status(201).json({
+      status: "success",
+      message: `${result.username} signup!`,
+    });
   } catch (err) {
     err.statusCode = 500;
     next(err);
@@ -79,6 +95,8 @@ export const signupController = async (req, res, next) => {
 
 // login controller
 export const loginController = async (req, res, next) => {
+  const logger = getLogger();
+
   //* Steps for login, authentication flow
   //[1] first take data comes with request
   //[2] zod - validate that data first, means that data follows our schema-stucture we actully store in DB (if not means it is fake data or random no need to even check)
@@ -91,18 +109,25 @@ export const loginController = async (req, res, next) => {
 
   const { email, password } = req.body;
 
+  //log
+  logger.info({ email }, "User login attempt received");
+
   //TODO validation
 
   // find
   const user = await User.findOne({ email });
 
-  console.log(user);
-  
-
   // not exists
   if (!user) {
     const error = new Error("Invalid Credentials!");
     error.statusCode = 400; // bad request
+
+    //log
+    logger.warn(
+      { email },
+      "Failed login attempt: Invalid authentication credentials",
+    );
+
     next(error);
     return;
   }
@@ -113,6 +138,13 @@ export const loginController = async (req, res, next) => {
   if (!isMatched) {
     const error = new Error("Invalid Credentials!");
     error.statusCode = 400; // bad request
+
+    //log
+    logger.warn(
+      { email },
+      "Failed login attempt: Invalid authentication credentials",
+    );
+
     next(error);
     return;
   }
@@ -131,10 +163,19 @@ export const loginController = async (req, res, next) => {
 
   // send user object with res
   res.user = {
-   id: user._id,
-   username: user.username,
-   email: user.email,
-  }
+    id: user._id,
+    username: user.username,
+    email: user.email,
+  };
 
-  res.status(200).json({ message: `${user._id} ID User loggedin!!` });
+  //log
+  logger.info(
+    { userId: user._id, email: user.email },
+    "User session successfully authenticated",
+  );
+
+  res.status(200).json({
+    status: "success",
+    message: `${user.username} loggedin!`,
+  });
 };

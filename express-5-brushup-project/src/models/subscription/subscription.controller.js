@@ -1,5 +1,8 @@
 //* Subscriptions controllers
 
+// 3rd party modules
+import { getLogger } from "pino-correlation-id";
+
 // user defined controller
 import mongoose from "mongoose";
 import User from "../user/user.model.js";
@@ -9,7 +12,7 @@ import Subscription from "./subscription.model.js";
 export const getAllSubsController = async (req, res, next) => {
   try {
     // user id
-    console.log(req.user);
+    // console.log(req.user);
 
     const userID = req.user.id;
     const result = await Subscription.find({ user: userID });
@@ -36,12 +39,16 @@ export const getAllSubsController = async (req, res, next) => {
 
 // create new sub controller
 export const newSubController = async (req, res, next) => {
+  const logger = getLogger();
+
   try {
     // data from request
     const userID = req.user.id;
     const { name, price, currency, billingCycle, category } = req.body;
 
     //TODO input valiaton by zod
+
+    //TODO log - failed
 
     // next billing date function
 
@@ -78,6 +85,17 @@ export const newSubController = async (req, res, next) => {
     // create
     const result = await Subscription.create(newSub);
 
+    //log
+    logger.info(
+      {
+        name: result.name,
+        price: result.price,
+        billingCycle: result.billingCycle,
+        userId: result.user,
+      },
+      "New subscription registered successfully",
+    );
+
     // res
     res.status(201).json({
       status: "success",
@@ -86,7 +104,8 @@ export const newSubController = async (req, res, next) => {
       },
     });
   } catch (error) {
-    error.statusCode = 500;
+    // error.statusCode = 500;
+
     next(error);
   }
 };
@@ -95,7 +114,7 @@ export const newSubController = async (req, res, next) => {
 export const updateSubController = async (req, res, next) => {
   try {
     // id from params
-    const subID = req.params.id;
+    const subId = req.params.id;
     const user = req.user;
 
     // updated data from body
@@ -115,7 +134,7 @@ export const updateSubController = async (req, res, next) => {
     };
 
     const updatedSub = await Subscription.findOneAndUpdate(
-      { _id: subID, user: user._id },
+      { _id: subId, user: user._id },
       newUpdatedData,
       {
         new: true, // Returns the newly updated document (instead of the old one)
@@ -149,15 +168,17 @@ export const updateSubController = async (req, res, next) => {
 
 // delete sub
 export const deleteSubController = async (req, res, next) => {
+  const logger = getLogger();
+
   try {
     // id form params
-    const subID = req.params.id;
+    const subId = req.params.id;
     // authenticated user data
     const user = req.user;
 
     // query send
     const result = await Subscription.findOneAndDelete({
-      _id: subID,
+      _id: subId,
       user: user._id,
     });
 
@@ -170,6 +191,9 @@ export const deleteSubController = async (req, res, next) => {
       next(error);
       return;
     }
+
+    //log
+    logger.info({ subId, userId }, "Subscription permanently ddeleted by user");
 
     res.status(200).json({
       status: "success",
