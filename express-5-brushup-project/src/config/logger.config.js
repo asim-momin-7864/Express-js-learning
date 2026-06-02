@@ -2,30 +2,30 @@
 
 // 3rd party modules
 import pino, { destination, levels } from "pino";
-import path from "path";
+// import path from "path";
 
 // log file path
-const logFilePath = path.join(
-  import.meta.dirname,
-  "..",
-  "..",
-  "logs",
-  "output.log",
-);
+// const logFilePath = path.join(
+//   import.meta.dirname,
+//   "..",
+//   "..",
+//   "logs",
+//   "output.log",
+// );
 
 
 // transport
 const transports = pino.transport({
   targets: [
-    {
-      target: "pino/file",
-      options: {
-        // destination: "../../logs/output.log",
-        destination: logFilePath,
-        mkdir: false,
-        colorize: true,
-      },
-    },
+    // {
+    //   target: "pino/file",
+    //   options: {
+    //     // destination: "../../logs/output.log",
+    //     destination: logFilePath,
+    //     mkdir: false,
+    //     colorize: true,
+    //   },
+    // },
     {
       target: "pino-pretty",
       options: {
