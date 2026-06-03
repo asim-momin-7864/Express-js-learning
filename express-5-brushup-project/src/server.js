@@ -9,6 +9,7 @@ import cookieParser from "cookie-parser";
 import helmet from "helmet";
 import { expressMiddleware } from "pino-correlation-id";
 import { getLogger } from "pino-correlation-id";
+import pinoHttp from "pino-http";
 
 // User define modules
 import { reqLogger } from "./utils/logger.js";
@@ -22,8 +23,44 @@ const app = express();
 
 // Global middlewares
 app.use(express.json());
+
+//log setup
 // request-id generation
+// 1. FIRST: Initialize Correlation Context
+// This creates the execution thread and generates the 'reqId'.
+// Any controller down the line can now call getLogger().
 app.use(expressMiddleware({ logger: baseLogger }));
+
+// 2. SECOND: Initialize HTTP Telemetry
+// pino-http will track response times and status codes.
+// We configure it to use the baseLogger and tell it not to generate its own reqId.
+app.use(
+  pinoHttp({
+    logger: baseLogger,
+    // Prevent pino-http from generating conflicting IDs; let correlation-id handle it
+    genReqId: (req) => req.id,
+
+    // Simplify the output so it only logs when the request finishes (latency tracking)
+    serializers: {
+      req: (req) => ({
+        method: req.method,
+        url: req.url,
+        // We drop req.headers completely to avoid logging passwords or cookies
+      }),
+      res: (res) => ({
+        statusCode: res.statusCode,
+        // We drop res.headers completely to avoid leaking JWTs in the Set-Cookie header
+      }),
+    },
+
+    // Optional: Format the automatic success/error messages
+    customSuccessMessage: (req, res) =>
+      `HTTP ${req.method} ${req.url} completed`,
+    customErrorMessage: (req, res, err) =>
+      `HTTP ${req.method} ${req.url} failed`,
+  }),
+);
+
 app.use(cors());
 app.use(cookieParser());
 app.use(reqLogger);
@@ -31,7 +68,6 @@ app.use(helmet());
 
 // DB Connection
 connectionDB();
-
 
 //-----------------------------------------------------------------------------------
 
@@ -52,8 +88,8 @@ app.use("/api/subscription", subRouter);
 //---------------------------------------------------------------------------
 //* Central Error handling middleware
 app.use((err, req, res, next) => {
-const logger = getLogger();
-  
+  const logger = getLogger();
+
   const statusCode = err.statusCode || 500;
   const message = err.message || "Internal Server Error";
 
@@ -68,7 +104,7 @@ const logger = getLogger();
   res.status(statusCode).json({
     status: "error",
     statusCode,
-    message
+    message,
   });
 });
 
