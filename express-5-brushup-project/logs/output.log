@@ -1,0 +1,54 @@
+{"level":30,"time":1780489246376,"pid":15943,"hostname":"blue-dragon","msg":"subTrack server successfully intialized on port 4000"}
+{"level":30,"time":1780489246408,"pid":15943,"hostname":"blue-dragon","msg":"MongoDB is connected successfully to server"}
+{"level":30,"time":1780489371186,"pid":16466,"hostname":"blue-dragon","msg":"subTrack server successfully intialized on port 4000"}
+{"level":30,"time":1780489371212,"pid":16466,"hostname":"blue-dragon","msg":"MongoDB is connected successfully to server"}
+{"level":30,"time":1780489477860,"pid":16466,"hostname":"blue-dragon","reqId":"a1b07002-bed7-42a2-a744-f4f035555c09","method":"GET","url":"/","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780489477863,"pid":16466,"hostname":"blue-dragon","req":{"method":"GET","url":"/"},"res":{"statusCode":200},"responseTime":4,"msg":"HTTP GET / completed"}
+{"level":30,"time":1780489531770,"pid":16466,"hostname":"blue-dragon","reqId":"0072c10a-f289-48ad-80aa-e232ebef93d7","method":"POST","url":"/api/user/signup","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780489531771,"pid":16466,"hostname":"blue-dragon","reqId":"0072c10a-f289-48ad-80aa-e232ebef93d7","email":"tester6@gmail.com","username":"tester6","msg":"User registration process initiated"}
+{"level":30,"time":1780489531867,"pid":16466,"hostname":"blue-dragon","reqId":"0072c10a-f289-48ad-80aa-e232ebef93d7","email":"tester6@gmail.com","msg":"User account successfully created"}
+{"level":30,"time":1780489531867,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/signup"},"res":{"statusCode":201},"responseTime":97,"msg":"HTTP POST /signup completed"}
+{"level":30,"time":1780489538460,"pid":16466,"hostname":"blue-dragon","reqId":"ceffb21a-edb3-40e3-a935-388e05732e17","method":"POST","url":"/api/user/login","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780489538460,"pid":16466,"hostname":"blue-dragon","reqId":"ceffb21a-edb3-40e3-a935-388e05732e17","email":"test1@gmail.com","msg":"User login attempt received"}
+{"level":30,"time":1780489538526,"pid":16466,"hostname":"blue-dragon","reqId":"ceffb21a-edb3-40e3-a935-388e05732e17","userId":"6a1442a732f0b18be899df94","email":"test1@gmail.com","msg":"User session successfully authenticated"}
+{"level":30,"time":1780489538526,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/login"},"res":{"statusCode":200},"responseTime":66,"msg":"HTTP POST /login completed"}
+{"level":30,"time":1780489563269,"pid":16466,"hostname":"blue-dragon","reqId":"8e729ab3-2a7e-4a28-9456-f57ee64b018c","method":"GET","url":"/api/subscription/mysubscriptions","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780489563278,"pid":16466,"hostname":"blue-dragon","req":{"method":"GET","url":"/api/subscription/mysubscriptions"},"res":{"statusCode":200},"responseTime":9,"msg":"HTTP GET /mysubscriptions completed"}
+{"level":30,"time":1780490144750,"pid":16466,"hostname":"blue-dragon","reqId":"69eb7d1d-3107-4e1c-94d9-745ee2c7a755","method":"POST","url":"/api/user/login","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490144750,"pid":16466,"hostname":"blue-dragon","reqId":"69eb7d1d-3107-4e1c-94d9-745ee2c7a755","email":"test1@il.com","msg":"User login attempt received"}
+{"level":40,"time":1780490144752,"pid":16466,"hostname":"blue-dragon","reqId":"69eb7d1d-3107-4e1c-94d9-745ee2c7a755","email":"test1@il.com","msg":"Failed login attempt: Invalid authentication credentials"}
+{"level":40,"time":1780490144752,"pid":16466,"hostname":"blue-dragon","reqId":"69eb7d1d-3107-4e1c-94d9-745ee2c7a755","status":400,"msg":"Client Validation Reject: Invalid Credentials!"}
+{"level":30,"time":1780490144753,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/login"},"res":{"statusCode":400},"responseTime":3,"msg":"HTTP POST /api/user/login completed"}
+{"level":30,"time":1780490207210,"pid":16466,"hostname":"blue-dragon","reqId":"48770d8f-c264-4b4a-85ad-cf2876d58e98","method":"POST","url":"/api/user/signup","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490207210,"pid":16466,"hostname":"blue-dragon","reqId":"48770d8f-c264-4b4a-85ad-cf2876d58e98","username":"tester6","msg":"User registration process initiated"}
+{"level":40,"time":1780490207210,"pid":16466,"hostname":"blue-dragon","reqId":"48770d8f-c264-4b4a-85ad-cf2876d58e98","msg":"Invalid credentials"}
+{"level":40,"time":1780490207210,"pid":16466,"hostname":"blue-dragon","reqId":"48770d8f-c264-4b4a-85ad-cf2876d58e98","status":400,"msg":"Client Validation Reject: All fields are required!"}
+{"level":30,"time":1780490207210,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/signup"},"res":{"statusCode":400},"responseTime":0,"msg":"HTTP POST /api/user/signup completed"}
+{"level":30,"time":1780490208093,"pid":16466,"hostname":"blue-dragon","reqId":"92d2c258-b5b4-4b26-8e4a-7fb3686176f8","method":"POST","url":"/api/user/signup","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490208093,"pid":16466,"hostname":"blue-dragon","reqId":"92d2c258-b5b4-4b26-8e4a-7fb3686176f8","username":"tester6","msg":"User registration process initiated"}
+{"level":40,"time":1780490208093,"pid":16466,"hostname":"blue-dragon","reqId":"92d2c258-b5b4-4b26-8e4a-7fb3686176f8","msg":"Invalid credentials"}
+{"level":40,"time":1780490208093,"pid":16466,"hostname":"blue-dragon","reqId":"92d2c258-b5b4-4b26-8e4a-7fb3686176f8","status":400,"msg":"Client Validation Reject: All fields are required!"}
+{"level":30,"time":1780490208094,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/signup"},"res":{"statusCode":400},"responseTime":1,"msg":"HTTP POST /api/user/signup completed"}
+{"level":30,"time":1780490209628,"pid":16466,"hostname":"blue-dragon","reqId":"4bb68ee2-6208-4897-9089-990fe3e5daec","method":"POST","url":"/api/user/signup","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490209629,"pid":16466,"hostname":"blue-dragon","reqId":"4bb68ee2-6208-4897-9089-990fe3e5daec","username":"tester6","msg":"User registration process initiated"}
+{"level":40,"time":1780490209629,"pid":16466,"hostname":"blue-dragon","reqId":"4bb68ee2-6208-4897-9089-990fe3e5daec","msg":"Invalid credentials"}
+{"level":40,"time":1780490209629,"pid":16466,"hostname":"blue-dragon","reqId":"4bb68ee2-6208-4897-9089-990fe3e5daec","status":400,"msg":"Client Validation Reject: All fields are required!"}
+{"level":30,"time":1780490209629,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/signup"},"res":{"statusCode":400},"responseTime":1,"msg":"HTTP POST /api/user/signup completed"}
+{"level":30,"time":1780490379690,"pid":16466,"hostname":"blue-dragon","reqId":"05a24f41-83d0-4e04-af08-3294ded98bd3","method":"POST","url":"/api/user/signup","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490379690,"pid":16466,"hostname":"blue-dragon","reqId":"05a24f41-83d0-4e04-af08-3294ded98bd3","username":"tester6","msg":"User registration process initiated"}
+{"level":40,"time":1780490379690,"pid":16466,"hostname":"blue-dragon","reqId":"05a24f41-83d0-4e04-af08-3294ded98bd3","msg":"Invalid credentials"}
+{"level":40,"time":1780490379690,"pid":16466,"hostname":"blue-dragon","reqId":"05a24f41-83d0-4e04-af08-3294ded98bd3","status":400,"msg":"Client Validation Reject: All fields are required!"}
+{"level":30,"time":1780490379691,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/signup"},"res":{"statusCode":400},"responseTime":1,"msg":"HTTP POST /api/user/signup completed"}
+{"level":30,"time":1780490438449,"pid":16466,"hostname":"blue-dragon","reqId":"f65d9450-a24c-4f77-b829-52103160bde1","method":"GET","url":"/","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490438450,"pid":16466,"hostname":"blue-dragon","req":{"method":"GET","url":"/"},"res":{"statusCode":200},"responseTime":1,"msg":"HTTP GET / completed"}
+{"level":30,"time":1780490449001,"pid":16466,"hostname":"blue-dragon","reqId":"85bbfd61-3343-4131-91c4-a9ff4522f242","method":"POST","url":"/api/user/login","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490449001,"pid":16466,"hostname":"blue-dragon","reqId":"85bbfd61-3343-4131-91c4-a9ff4522f242","email":"test1@il.com","msg":"User login attempt received"}
+{"level":40,"time":1780490449003,"pid":16466,"hostname":"blue-dragon","reqId":"85bbfd61-3343-4131-91c4-a9ff4522f242","email":"test1@il.com","msg":"Failed login attempt: Invalid authentication credentials"}
+{"level":40,"time":1780490449003,"pid":16466,"hostname":"blue-dragon","reqId":"85bbfd61-3343-4131-91c4-a9ff4522f242","status":400,"msg":"Client Validation Reject: Invalid Credentials!"}
+{"level":30,"time":1780490449004,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/login"},"res":{"statusCode":400},"responseTime":3,"msg":"HTTP POST /api/user/login completed"}
+{"level":30,"time":1780490454967,"pid":16466,"hostname":"blue-dragon","reqId":"ca80005a-54d9-46b8-aefd-261da18e5c88","method":"POST","url":"/api/user/login","ip":"::1","msg":"Incoming Http Request"}
+{"level":30,"time":1780490454967,"pid":16466,"hostname":"blue-dragon","reqId":"ca80005a-54d9-46b8-aefd-261da18e5c88","email":"test1@gmail.com","msg":"User login attempt received"}
+{"level":30,"time":1780490455029,"pid":16466,"hostname":"blue-dragon","reqId":"ca80005a-54d9-46b8-aefd-261da18e5c88","userId":"6a1442a732f0b18be899df94","email":"test1@gmail.com","msg":"User session successfully authenticated"}
+{"level":30,"time":1780490455030,"pid":16466,"hostname":"blue-dragon","req":{"method":"POST","url":"/api/user/login"},"res":{"statusCode":200},"responseTime":63,"msg":"HTTP POST /login completed"}
+{"level":30,"time":1780491839673,"pid":24758,"hostname":"blue-dragon","msg":"subTrack server successfully intialized on port 4000"}
+{"level":30,"time":1780491839699,"pid":24758,"hostname":"blue-dragon","msg":"MongoDB is connected successfully to server"}

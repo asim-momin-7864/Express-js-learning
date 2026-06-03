@@ -2,30 +2,28 @@
 
 // 3rd party modules
 import pino, { destination, levels } from "pino";
-// import path from "path";
+import path from "path";
 
 // log file path
-// const logFilePath = path.join(
-//   import.meta.dirname,
-//   "..",
-//   "..",
-//   "logs",
-//   "output.log",
-// );
-
+const logFilePath = path.join(
+  import.meta.dirname,
+  "..",
+  "..",
+  "logs",
+  "output.log",
+);
 
 // transport
 const transports = pino.transport({
   targets: [
-    // {
-    //   target: "pino/file",
-    //   options: {
-    //     // destination: "../../logs/output.log",
-    //     destination: logFilePath,
-    //     mkdir: false,
-    //     colorize: true,
-    //   },
-    // },
+    {
+      target: "pino/file",
+      options: {
+        destination: logFilePath,
+        mkdir: false,
+        colorize: true,
+      },
+    },
     {
       target: "pino-pretty",
       options: {
@@ -34,7 +32,13 @@ const transports = pino.transport({
       },
     },
 
-    //TODO better stack logs transport config
+    // 3. CLOUD TELEMETRY: Better Stack Integration
+    {
+      target: "@logtail/pino",
+      options: {
+        sourceToken: process.env.BETTER_STACK_SOURCE_TOKEN,
+      },
+    },
   ],
 });
 
@@ -46,9 +50,10 @@ export const baseLogger = pino(
       paths: ["password", "token"],
       remove: true,
     },
-    formatters: {
-      level: (label) => ({ level: label.toUpperCase() }),
-    },
+    //! Not support for multiple targets
+    // formatters: {
+    //   level: (label) => ({ level: label.toUpperCase() }),
+    // },
   },
   transports,
 );
